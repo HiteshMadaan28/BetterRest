@@ -19,6 +19,8 @@ struct ContentView: View {
         Stepper("\(sleepAmount.formatted()) Hours",value: $sleepAmount,in: 4...12,step: 0.25)
             .padding(40)
             
+        Text(Date.now,format: .dateTime.hour().minute())
+        Text(Date.now.formatted(date: .long,time: .shortened))
     }
     
     func exampleDate(){
