@@ -48,8 +48,13 @@ struct ContentView: View {
     var body: some View {
         
         NavigationStack{
-            Form{
-                VStack(alignment: .leading,spacing: 10){
+            ZStack{
+            LinearGradient(colors: [.blue , .purple], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+            
+            VStack{
+                Spacer()
+                VStack(spacing: 10){
                   
                     Text("When do you want to Wake up")
                         .font(.headline)
@@ -57,6 +62,8 @@ struct ContentView: View {
                     DatePicker("Please Enter a time",selection: $wakeUp,displayedComponents: .hourAndMinute)
                         .labelsHidden()
                 }
+                
+                Spacer()
                 
                 VStack(alignment: .leading,spacing: 10){
                     Text("Desired Amount of Sleep")
@@ -66,6 +73,8 @@ struct ContentView: View {
                         .frame(width: 200)
                 }
                 
+                Spacer()
+                
                 VStack(alignment: .leading,spacing: 10){
                     Text("Daily coffee Intake")
                         .font(.headline)
@@ -73,12 +82,18 @@ struct ContentView: View {
                     Stepper("\(coffeecups) cup(s))",value: $coffeecups,in: 0...20)
                         .frame(width: 200)
                 }
-                Section("Result"){
+                Spacer()
+                Section("Esstimate BedTime"){
                     Text("\(result)")
                         .font(.largeTitle.bold())
+                Spacer()
                 }
             
             }
+            .frame(width: 300,height:500)
+            .background(.regularMaterial)
+            .clipShape(.rect(cornerRadius: 20))
+            
             
             
             .navigationTitle("BetterRest")
@@ -91,6 +106,7 @@ struct ContentView: View {
         }message: {
             Text(alertMessage)
         }
+            }
         
     }
     
